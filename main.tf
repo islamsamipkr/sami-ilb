@@ -23,7 +23,7 @@ resource "google_compute_address" "internal_lb_ip" {
 # 2. CERTIFICAT SSL (Self-managed)
 # ============================================================================
 resource "google_compute_ssl_certificate" "lb_cert" {
-  name        = "${local.config.prefix}-ssl-cert"
+  name        = "${var.project_prefix}-ssl-cert"
   private_key = "certs/certificate.crt"
   certificate = "certs/private.key"
   project     = var.project_id
@@ -45,7 +45,7 @@ module "networkendpointgroup" {
   }
   
   project_id       = local.config.project_id
-  name             = "${local.config.prefix}-${each.value.name}-neg"
+  name             = "${var.project_prefix}-${each.value.name}-neg"
   cloudrun_service = each.value.name
   regions          = local.config.regions
 }
