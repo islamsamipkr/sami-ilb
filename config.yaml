@@ -2,10 +2,6 @@ regions:
   - "northamerica-northeast1"
   - "us-central1"
 
-forwarding_rule:
-  port_range: "443"
-  allow_global_access: true
-
 cloudrun_services:
   - name: "fetch-data"
   - name: "delete-data"
