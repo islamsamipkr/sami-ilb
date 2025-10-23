@@ -9,5 +9,5 @@ variable "config_file" {
 variable "project_id" {
   description = "GCP Project ID (defaults to config.yaml value)"
   type        = string
-  default     = ""
+  default     = "uclodia-424702-e7c1c"
 }
