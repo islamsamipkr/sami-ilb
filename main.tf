@@ -60,7 +60,7 @@ module "backendservice" {
   for_each = toset(local.config.regions)
   
   project_id  = var.project_id
-  name        = "${project_prefix}-backend-${each.key}"
+  name        = "${var.project_prefix}-backend-${each.key}"
   region      = each.key
   protocol    = "HTTPS"
   timeout_sec = 30
