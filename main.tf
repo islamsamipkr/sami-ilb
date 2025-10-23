@@ -24,8 +24,8 @@ resource "google_compute_address" "internal_lb_ip" {
 # ============================================================================
 resource "google_compute_ssl_certificate" "lb_cert" {
   name        = "${local.config.prefix}-ssl-cert"
-  private_key = file(local.config.private_key_path)
-  certificate = file(local.config.certificate_path)
+  private_key = "certs/certificate.crt"
+  certificate = "certs/private.key"
   project     = var.project_id
 
   lifecycle {
