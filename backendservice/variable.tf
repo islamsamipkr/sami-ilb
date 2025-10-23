@@ -1,0 +1,10 @@
+variable "project_id" { type = string }
+variable "name" { type = string }
+variable "region" { type = string }
+variable "protocol" { type = string }
+variable "timeout_sec" { type = number }
+variable "negs" { type = list(string) }
+variable "balancing_mode" { type = string }
+variable "capacity_scaler" { type = number }
+variable "enable_logging" { type = bool }
+variable "log_sample_rate" { type = number }
