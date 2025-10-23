@@ -60,11 +60,11 @@ module "backendservice" {
   
   for_each = toset(local.config.regions)
   
-  project_id  = local.config.project_id
+  project_id  = var.project_id
   name        = "${local.config.prefix}-backend-${each.key}"
   region      = each.key
-  protocol    = local.config.backend.protocol
-  timeout_sec = local.config.backend.timeout_sec
+  protocol    = "HTTPS"
+  timeout_sec = 30
   
   # Collecter tous les NEG self_links pour cette région
   negs = [
@@ -72,10 +72,10 @@ module "backendservice" {
     neg_module.neg_self_link[each.key]
   ]
   
-  balancing_mode   = local.config.backend.balancing_mode
-  capacity_scaler  = local.config.backend.capacity_scaler
-  enable_logging   = local.config.backend.enable_logging
-  log_sample_rate  = local.config.backend.log_sample_rate
+  balancing_mode   = "UTILIZATION"
+  capacity_scaler  = 1.0
+  enable_logging   = true
+  log_sample_rate  = 1.0
 }
 
 # ============================================================================
