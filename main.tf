@@ -38,12 +38,13 @@ resource "google_compute_ssl_certificate" "lb_cert" {
 # ============================================================================
 module "networkendpointgroup" {
   source = "./networkendpointgroup"
-  
+
   for_each = {
     for service in local.config.cloudrun_services :
     service.name => service
+    if length(local.config.regions) <= 2
   }
-  
+
   project_id       = var.project_id
   name             = "${var.project_prefix}-${each.value.name}-neg"
   cloudrun_service = each.value.name
