@@ -44,7 +44,7 @@ module "networkendpointgroup" {
     service.name => service
   }
   
-  project_id       = local.config.project_id
+  project_id       = var.project_id
   name             = "${var.project_prefix}-${each.value.name}-neg"
   cloudrun_service = each.value.name
   regions          = local.config.regions
@@ -84,7 +84,7 @@ resource "google_compute_region_url_map" "url_map" {
   
   name            = "${local.config.prefix}-url-map-${each.key}"
   region          = each.key
-  project         = local.config.project_id
+  project         = var.project_id
   default_service = module.backendservice[each.key].backend_service_id
 }
 
@@ -96,7 +96,7 @@ resource "google_compute_region_target_https_proxy" "https_proxy" {
   
   name             = "${local.config.prefix}-https-proxy-${each.key}"
   region           = each.key
-  project          = local.config.project_id
+  project          = var.project_id
   url_map          = google_compute_region_url_map.url_map[each.key].id
   ssl_certificates = [google_compute_ssl_certificate.lb_cert.id]
 }
@@ -109,7 +109,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule" {
   
   name                  = "${local.config.prefix}-fwd-rule-${each.key}"
   region                = each.key
-  project               = local.config.project_id
+  project               = var.project_id
   ip_protocol           = "TCP"
   load_balancing_scheme = "INTERNAL_MANAGED"
   port_range            = "443"
