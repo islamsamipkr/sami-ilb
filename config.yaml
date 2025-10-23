@@ -29,7 +29,7 @@ forwarding_rule:
   allow_global_access: true
 
 cloudrun_services:
-  - name: "fetchData"
-  - name: "deleteData"
-  - name: "createData"
-  - name: "checkoutData"
+  - name: "fetch-data"
+  - name: "delete-data"
+  - name: "create-data"
+  - name: "checkout-data"
