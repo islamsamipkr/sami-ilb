@@ -15,3 +15,7 @@ variable "project_prefix"{
 type=string
 default="chargemanagement"
 }
+variable "GOOGLE_CREDENTIALS" {
+  type      = string
+  sensitive = true
+}
