@@ -1,0 +1,22 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+!terraform.tfvars.example
+.terraform/
+.terraform.lock.hcl
+crash.log
+
+# SSL/Secrets
+*.key
+*.crt
+*.pem
+certs/
+
+# OS
+.DS_Store
+*.swp
+
+# IDE
+.vscode/
+.idea/
