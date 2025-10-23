@@ -11,3 +11,7 @@ variable "project_id" {
   type        = string
   default     = "uclodia-424702-e7c1c"
 }
+variable "project_prefix"{
+type=string
+default="chargemanagement"
+}
