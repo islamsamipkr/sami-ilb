@@ -83,7 +83,7 @@ module "backendservice" {
 resource "google_compute_region_url_map" "url_map" {
   for_each = toset(local.config.regions)
   
-  name            = "${local.config.prefix}-url-map-${each.key}"
+  name            = "${var.project_prefix}-url-map-${each.key}"
   region          = each.key
   project         = var.project_id
   default_service = module.backendservice[each.key].backend_service_id
@@ -95,7 +95,7 @@ resource "google_compute_region_url_map" "url_map" {
 resource "google_compute_region_target_https_proxy" "https_proxy" {
   for_each = toset(local.config.regions)
   
-  name             = "${local.config.prefix}-https-proxy-${each.key}"
+  name             = "${var.project_prefix}-https-proxy-${each.key}"
   region           = each.key
   project          = var.project_id
   url_map          = google_compute_region_url_map.url_map[each.key].id
@@ -108,7 +108,7 @@ resource "google_compute_region_target_https_proxy" "https_proxy" {
 resource "google_compute_forwarding_rule" "forwarding_rule" {
   for_each = toset(local.config.regions)
   
-  name                  = "${local.config.prefix}-fwd-rule-${each.key}"
+  name                  = "${var.project_prefix}-fwd-rule-${each.key}"
   region                = each.key
   project               = var.project_id
   ip_protocol           = "TCP"
