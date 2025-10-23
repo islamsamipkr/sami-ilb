@@ -116,10 +116,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule" {
   load_balancing_scheme = "INTERNAL_MANAGED"
   port_range            = local.config.forwarding_rule.port_range
   target                = google_compute_region_target_https_proxy.https_proxy[each.key].id
-  network               = local.config.network
-  subnetwork            = local.config.subnetworks[each.key]
   ip_address            = google_compute_address.internal_lb_ip[each.key].address
-  allow_global_access   = local.config.forwarding_rule.allow_global_access
   
   depends_on = [google_compute_address.internal_lb_ip]
 }
