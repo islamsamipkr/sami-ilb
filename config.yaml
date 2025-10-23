@@ -1,28 +1,6 @@
-# Configuration complète de l Internal Application Load Balancer
-project_id: "sami-ilb"
-prefix: "mobility-internal"
-
 regions:
   - "northamerica-northeast1"
   - "us-central1"
-
-network: "projects/sami-ilb/global/networks/default"
-
-subnetworks:
-  northamerica-northeast1: "projects/sami-ilb/regions/northamerica-northeast1/subnetworks/default"
-  us-central1: "projects/sami-ilb/regions/us-central1/subnetworks/default"
-
-# Chemins vers les certificats SSL
-certificate_path: "certs/certificate.crt"
-private_key_path: "certs/private.key"
-
-backend:
-  protocol: "HTTPS"
-  timeout_sec: 30
-  balancing_mode: "UTILIZATION"
-  capacity_scaler: 1.0
-  enable_logging: true
-  log_sample_rate: 1.0
 
 forwarding_rule:
   port_range: "443"
