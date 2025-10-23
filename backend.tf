@@ -1,6 +1,6 @@
 terraform {
   cloud {
-    organization = "sami600"
+    organization = "Triforce"
     
     workspaces {
       tags = ["internal-loadbalancer", "sami-ilb"]
