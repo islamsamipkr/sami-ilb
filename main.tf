@@ -8,14 +8,13 @@ locals {
 }
 
 # ============================================================================
-# 1. IP ADDRESSES INTERNES RÉSERVÉES (une par région)
+# 1. Reserve Internal IP ADDRESSES 
 # ============================================================================
 resource "google_compute_address" "internal_lb_ip" {
   for_each = toset(local.config.regions)
   
-  name         = "${local.config.prefix}-ip-${each.key}"
+  name         = "chargemanagementipaddress"
   address_type = "INTERNAL"
-  purpose      = "GCE_ENDPOINT"
   region       = "northamerica-northeast1"
   project      = var.project_id
 }
@@ -27,7 +26,7 @@ resource "google_compute_ssl_certificate" "lb_cert" {
   name        = "${local.config.prefix}-ssl-cert"
   private_key = file(local.config.private_key_path)
   certificate = file(local.config.certificate_path)
-  project     = local.config.project_id
+  project     = var.project_id
 
   lifecycle {
     create_before_destroy = true
