@@ -16,9 +16,8 @@ resource "google_compute_address" "internal_lb_ip" {
   name         = "${local.config.prefix}-ip-${each.key}"
   address_type = "INTERNAL"
   purpose      = "GCE_ENDPOINT"
-  subnetwork   = local.config.subnetworks[each.key]
-  region       = each.key
-  project      = local.config.project_id
+  region       = "northamerica-northeast1"
+  project      = var.project_id
 }
 
 # ============================================================================
