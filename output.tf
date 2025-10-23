@@ -15,8 +15,3 @@ output "load_balancer_urls" {
     region => "https://${ip.address}"
   }
 }
-
-output "project_id" {
-  description = "GCP Project ID"
-  value       = local.config.project_id
-}
