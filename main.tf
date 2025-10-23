@@ -112,7 +112,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule" {
   project               = local.config.project_id
   ip_protocol           = "TCP"
   load_balancing_scheme = "INTERNAL_MANAGED"
-  port_range            = local.config.forwarding_rule.port_range
+  port_range            = "443"
   target                = google_compute_region_target_https_proxy.https_proxy[each.key].id
   ip_address            = google_compute_address.internal_lb_ip[each.key].address
   
