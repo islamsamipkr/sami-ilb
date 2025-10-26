@@ -35,7 +35,7 @@ resource "google_compute_ssl_certificate" "lb_cert" {
 */
 resource "google_certificate_manager_dns_authorization" "auth" {
   name     = "ilb-dns-auth"
-  location = var.region
+  location = "northamerica-northeast1"
   domain   = "app.example.com"   # your actual public domain
 }
 resource "google_certificate_manager_certificate" "gm" {
