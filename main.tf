@@ -33,12 +33,22 @@ resource "google_compute_ssl_certificate" "lb_cert" {
   }
 }
 */
+resource "google_certificate_manager_dns_authorization" "auth" {
+  name     = "ilb-dns-auth"
+  location = var.region
+  domain   = "app.example.com"   # your actual public domain
+}
 resource "google_certificate_manager_certificate" "gm" {
   name     = "ilb-gm-cert"
   location = "northamerica-northeast1"
   scope    = "REGIONAL"
+managed {
+    domains            = ["app.example.com"]
+    dns_authorizations = [google_certificate_manager_dns_authorization.auth.id]
+  }
 
 }
+
 # ============================================================================
 # 3. NETWORK ENDPOINT GROUPS (NEGs) pour Cloud Run
 # ============================================================================
