@@ -3,3 +3,4 @@ regions:
 
 cloudrun_services:
   - name: "fetch-data"
+  - name: "common-data"
