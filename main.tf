@@ -37,10 +37,7 @@ resource "google_certificate_manager_certificate" "gm" {
   name     = "ilb-gm-cert"
   location = var.region
   scope    = "REGIONAL"
-  managed {
-    domains            = [var.domain]
-    dns_authorizations = [google_certificate_manager_dns_authorization.auth.id]
-  }
+
 }
 # ============================================================================
 # 3. NETWORK ENDPOINT GROUPS (NEGs) pour Cloud Run
