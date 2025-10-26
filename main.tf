@@ -35,7 +35,7 @@ resource "google_compute_ssl_certificate" "lb_cert" {
 */
 resource "google_certificate_manager_certificate" "gm" {
   name     = "ilb-gm-cert"
-  location = var.region
+  location = "northamerica-northeast1"
   scope    = "REGIONAL"
 
 }
