@@ -19,7 +19,7 @@ resource "google_compute_address" "internal_lb_ip" {
   project      = var.project_id
 }
 
-# ============================================================================
+/*# ============================================================================
 # 2. CERTIFICAT SSL (Self-managed)
 # ============================================================================
 resource "google_compute_ssl_certificate" "lb_cert" {
@@ -32,7 +32,16 @@ resource "google_compute_ssl_certificate" "lb_cert" {
     create_before_destroy = true
   }
 }
-
+*/
+resource "google_certificate_manager_certificate" "gm" {
+  name     = "ilb-gm-cert"
+  location = var.region
+  scope    = "REGIONAL"
+  managed {
+    domains            = [var.domain]
+    dns_authorizations = [google_certificate_manager_dns_authorization.auth.id]
+  }
+}
 # ============================================================================
 # 3. NETWORK ENDPOINT GROUPS (NEGs) pour Cloud Run
 # ============================================================================
