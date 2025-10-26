@@ -3,6 +3,3 @@ regions:
 
 cloudrun_services:
   - name: "fetch-data"
-  - name: "delete-data"
-  - name: "create-data"
-  - name: "checkout-data"
