@@ -108,7 +108,8 @@ resource "google_compute_region_target_https_proxy" "https_proxy" {
   region           = each.key
   project          = var.project_id
   url_map          = google_compute_region_url_map.url_map[each.key].id
-  ssl_certificates = [google_compute_ssl_certificate.lb_cert.id]
+  //ssl_certificates = [google_compute_ssl_certificate.lb_cert.id]
+  ssl_certificates = [google_certificate_manager_certificate.gm.id]
 }
 
 # ============================================================================
