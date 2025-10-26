@@ -1,6 +1,5 @@
 regions:
   - "northamerica-northeast1"
-  - "us-central1"
 
 cloudrun_services:
   - name: "fetch-data"
